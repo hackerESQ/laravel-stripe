@@ -1,0 +1,45 @@
+{
+    "name": "hackeresq/laravel-stripe",
+    "description": "Simple wrapper for the Stripe PHP API which provides a Laravel facade and helper",
+    "keywords": [
+        "stripe",
+        "laravel"
+    ],
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "HackerESQ\\Stripe\\": "src/"
+        },
+        "files": [
+            "src/Helpers/helper.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HackerESQ\\Stripe\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php" : ">=7.0",
+        "laravel/framework": "^6.0|^7.0|^8.0",
+        "stripe/stripe-php": "^7.72"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0|^8.0|^9.0",
+        "orchestra/testbench": "^6.11"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HackerESQ\\Stripe\\StripeServiceProvider"
+            ],
+            "aliases": {
+                "Stripe": "HackerESQ\\Stripe\\Facades\\Stripe"
+            }
+        }
+    }
+}
