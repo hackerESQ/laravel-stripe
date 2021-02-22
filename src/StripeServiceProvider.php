@@ -2,7 +2,6 @@
 
 namespace HackerESQ\Stripe;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class StripeServiceProvider extends ServiceProvider {
