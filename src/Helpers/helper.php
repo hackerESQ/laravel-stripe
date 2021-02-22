@@ -7,7 +7,7 @@ if ( !function_exists('stripe') )
 	/**
 	 * Stripe helper function
 	 * 
-	 * @param $secret_key (optional) 
+	 * @param mixed|null $secret_key (optional) 
 	 * @return \Stripe\StripeClient
 	 */
 	function stripe($secret_key = null){
