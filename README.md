@@ -31,7 +31,11 @@ Stripe can be accessed using the easy-to-remember Facade, `Stripe` or with the c
 
 ### Create a payment intent
 ```php
-    $stripe = stripe(Settings::get('stripe_secret_key'));
+    // you can use the global helper function
+    $stripe = stripe();
+
+    // or the facade
+    $stripe = Stripe::make();
 
     // get customer payment methods
     $paymentMethods = $stripe->paymentMethods->all([
