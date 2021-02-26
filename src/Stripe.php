@@ -16,8 +16,8 @@ class Stripe {
         return $this;
     }
 
-    public function make() {
-        return new StripeClient($this->secret_key);
+    public function make($secret = null) {
+        return new StripeClient($secret ?? $this->secret_key);
     }
 
 }
