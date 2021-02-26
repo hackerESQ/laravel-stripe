@@ -1,5 +1,59 @@
 # laravel-stripe
 
+This package is a slim Laravel wrapper around the Stripe PHP SDK. It gives direct access to all of the Stripe PHP SDK methods and properties via a Laravel Facade and helper function. 
+
+## Installation
+This package can be used in Laravel 5.4 or higher.
+
+You can install the package via composer:
+
+``` bash
+composer require hackeresq/laravel-stripe
+```
+
+Since Laravel 5.5+, service providers, helpers, and aliases will automatically get registered and you can skip this step. 
+
+Optionally, you can set the `services.stripe.secret` in the `service.php` config file that is provided with Laravel, like so: 
+
+```php
+'stripe' => [
+    'secret' => env('STRIPE_SECRET'),
+]
+```
+
+<b>Success!</b> laravel-stripe is now installed!
+
+## Usage
+
+Stripe can be accessed using the easy-to-remember Facade, `Stripe` or with the convenient helper `stripe()`. You can also set the secret during runtime with the `setSecretKey()` method. 
+
+## Example
+
+### Create a payment intent
+```php
+    $stripe = stripe(Settings::get('stripe_secret_key'));
+
+    // get customer payment methods
+    $paymentMethods = $stripe->paymentMethods->all([
+        'type' => 'card',
+        'customer' => 'cus_13374j9a2ff13j0oh8',
+    ]);
+    
+    // create payment intent
+    $paymentIntent = $stripe->paymentIntents->create([
+        'amount' => 2000 // amount is in cents (or the lowest denomination of your currency)
+        'currency' => 'usd',
+        'payment_method_types' => ['card'],
+        'customer' => 'cus_13374j9a2ff13j0oh8',
+        'metadata' => []
+    ]);
+
+    // confirm payment intent
+    $paymentIntent = $stripe->paymentIntents->confirm($paymentIntent['id'], [
+        'payment_method' => $paymentMethod[0]['id'],
+        'setup_future_usage' => 'off_session',
+    ]);
+```
 
 ## Finally
 
