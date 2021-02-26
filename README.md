@@ -11,8 +11,6 @@ You can install the package via composer:
 composer require hackeresq/laravel-stripe
 ```
 
-Since Laravel 5.5+, service providers, helpers, and aliases will automatically get registered and you can skip this step. 
-
 Optionally, you can set the `services.stripe.secret` in the `service.php` config file that is provided with Laravel, like so: 
 
 ```php
