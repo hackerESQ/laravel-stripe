@@ -15,7 +15,9 @@ class StripeServiceProvider extends ServiceProvider {
      */
     public function register () 
     {
-        $this->app->singleton('stripe','HackerESQ\Stripe\Stripe');
+        $this->app->singleton('stripe', function ($app) {
+            return new \HackerESQ\Stripe\Stripe;
+        });
 
     }
 }
