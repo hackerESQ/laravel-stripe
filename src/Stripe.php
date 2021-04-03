@@ -7,7 +7,7 @@ use \Stripe\StripeClient;
 class Stripe {
 
     public function __construct() {
-        $this->secret_key = config('services.stripe.secret', null);
+        $this->secret_key = config('services.stripe.secret', null) ?? config('cashier.secret', null);
     }
 
     public function setSecretKey($key) {
