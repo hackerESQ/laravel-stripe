@@ -3,6 +3,7 @@
 namespace HackerESQ\Stripe;
 
 use Stripe\StripeClient;
+use Illuminate\Support\Arr;
 use Illuminate\Contracts\Foundation\Application;
 
 class Stripe
@@ -14,13 +15,14 @@ class Stripe
      */
     protected $secret_key;
 
-    public function __construct(Application $app)
+    public function __construct($config)
     {
-        $this->secret_key = $app['config']['services.stripe.secret'] ?? $app['config']['cashier.secret'];
+        // attempt to pre-populate Stripe secret key
+        $this->secret_key = Arr::get($config, 'services.stripe.secret', null) ?? Arr::get($config, 'cashier.secret', null);
     }
 
     /**
-     * Sets the Stripe secret key
+     * Set the Stripe secret key
      * 
      * @param string $key
      */

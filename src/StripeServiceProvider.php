@@ -17,7 +17,10 @@ class StripeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('stripe', function ($app) {
-            return new \HackerESQ\Stripe\Stripe($app);
+            // pass relevant config to Stripe
+            $config = $app->make('config')->get(['services.stripe', 'cashier']);
+
+            return new \HackerESQ\Stripe\Stripe($config);
         });
     }
 }
