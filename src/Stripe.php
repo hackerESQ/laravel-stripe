@@ -1,23 +1,44 @@
-<?php 
+<?php
 
 namespace HackerESQ\Stripe;
 
 use \Stripe\StripeClient;
- 
-class Stripe {
 
-    public function __construct() {
+class Stripe
+{
+
+    /**
+     * Stripe secret key
+     *
+     * @var string
+     */
+    protected $secret_key;
+
+    public function __construct()
+    {
         $this->secret_key = config('services.stripe.secret', null) ?? config('cashier.secret', null);
     }
 
-    public function setSecretKey($key) {
-        if (!empty($key)) $this->secret_key = $key;
+    /**
+     * Sets the Stripe secret key
+     * 
+     * @param string $key
+     */
+    public function setSecretKey(String $key)
+    {
+        $this->secret_key = $key;
 
         return $this;
     }
 
-    public function make($key = null) {
+    /**
+     * Get a new StripeClient object
+     * 
+     * @param string|null $key (optional)
+     * @return \Stripe\StripeClient
+     */
+    public function make($key = null)
+    {
         return new StripeClient($key ?? $this->secret_key);
     }
-
 }
