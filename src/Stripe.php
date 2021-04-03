@@ -7,11 +7,6 @@ use Illuminate\Contracts\Foundation\Application;
 
 class Stripe
 {
-    /** 
-     * @var Application
-     */
-    protected $app;
-
     /**
      * Stripe secret key
      *
@@ -21,7 +16,6 @@ class Stripe
 
     public function __construct(Application $app)
     {
-        $this->app = $app;
         $this->secret_key = $app['config']['services.stripe.secret'] ?? $app['config']['cashier.secret'];
     }
 
