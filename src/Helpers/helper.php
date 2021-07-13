@@ -1,6 +1,6 @@
 <?php
 
-use HackerESQ\Stripe\Facades\Stripe;
+use HackerESQ\Stripe\Stripe;
 
 if (!function_exists('stripe')) {
 	/**
@@ -11,7 +11,12 @@ if (!function_exists('stripe')) {
 	 */
 	function stripe($secret_key = null)
 	{
+		// tries to guess secret key
+		$config = app()->make('config')->get(['services.stripe', 'cashier']);
 
-		return Stripe::make($secret_key);
+		// returns stripe client
+		return app(Stripe::class, ['config' => $config])->make($secret_key);
+
+		// return Stripe::make($secret_key);
 	}
 }
