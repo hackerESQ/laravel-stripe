@@ -22,7 +22,7 @@
     },
     "require": {
         "php" : ">=7.0",
-        "laravel/framework": "^6.0|^7.0|^8.0",
+        "laravel/framework": "^8.0|^9.0|^10.0",
         "stripe/stripe-php": "^7.72"
     },
     "require-dev": {
